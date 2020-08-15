@@ -1,0 +1,9 @@
+steps:
+    - script: |
+        echo "running 2nd job"
+        ls
+      displayName: 2nd job for testing
+    - task: Go@0
+      displayName: Normal Test command
+      inputs:
+        command: test

@@ -1,0 +1,14 @@
+steps:
+    - script: |
+        echo "Archiving the files"
+        ls
+        pwd
+      displayName: Archiving the project
+    - task: ArchiveFiles@2
+      displayName: Archiving files here
+      inputs:
+        rootFolderOrFile: '$(Build.BinariesDirectory)'
+        includeRootFolder: true
+        archiveType: 'zip'
+        archiveFile: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip'
+        replaceExistingArchive: true

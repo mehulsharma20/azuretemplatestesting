@@ -1,0 +1,19 @@
+steps:
+    - script: |
+        echo "Code Fatched"
+      displayName: "Code Fatched"
+    - task: GoTool@0
+      displayName: Using Golang 1.13
+      inputs: 
+       version: '1.13'
+    - script: |
+        go get -d
+        go install
+      displayName: 'resolved dependencies -get'
+    - task: Go@0
+      displayName: Building the project
+      inputs:
+        command: 'build'
+        arguments: '-o $(System.TeamProject).exe'
+    - script: |
+        ls

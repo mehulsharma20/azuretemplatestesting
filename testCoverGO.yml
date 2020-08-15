@@ -1,0 +1,9 @@
+steps:
+    - script: |
+         echo "Running 3ed job with 2nd job"
+      displayName: 3rd job with 2nd job
+    - task: Go@0
+      displayName: Test code coverage
+      inputs:
+        command: test
+        arguments: '-c'
