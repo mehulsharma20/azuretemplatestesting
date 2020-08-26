@@ -1,0 +1,10 @@
+parameters:
+-  name: 'module_name'
+   type: string
+   default: ''
+
+steps:
+- script: |
+    cd ${{ parameters.module_name }}
+    go build -o ../artifact/GoArt
+  displayName: 'Go Build'

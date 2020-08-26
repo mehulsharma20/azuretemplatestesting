@@ -1,9 +1,31 @@
+# steps:
+#     - script: |
+#          echo "Running 3ed job with 2nd job"
+#       displayName: 3rd job with 2nd job
+#     - task: Go@0
+#       displayName: Test code coverage
+#       inputs:
+#         command: test
+#         arguments: '-c'
 steps:
-    - script: |
-         echo "Running 3ed job with 2nd job"
-      displayName: 3rd job with 2nd job
-    - task: Go@0
-      displayName: Test code coverage
-      inputs:
-        command: test
-        arguments: '-c'
+  - script: |
+       echo "Running 3ed job with 2nd job"
+    displayName: 3rd job with 2nd job
+  - task: Go@0
+    displayName: Test code coverage
+    inputs:
+      command: test
+      arguments: '-c'
+
+  - script: |
+      go test -coverprofile=c.out
+      go tool cover -html=c.out -o coverage.html
+      ls
+      cat coverage.html
+    displayName: 'code coverage testing'
+   
+  - task: publishHtml@1
+    displayName: Publish coverage html
+    inputs:
+     artifactName: $(Build.BuildId)
+     htmlFilePath: 'coverage.html'
