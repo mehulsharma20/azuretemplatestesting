@@ -9,3 +9,5 @@ steps:
     go get
     go build -o ../artifact/GoArt
   displayName: 'Go Build'
+
+
